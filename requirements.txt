@@ -1,0 +1,10 @@
+mongoose
+axios
+bcrypt
+express
+shadcn
+radix-ui
+react-router-dom
+tailwindcss postcss autoprefixer
+vite
+npm i
