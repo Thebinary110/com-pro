@@ -11,7 +11,7 @@ const createToken = (email, userId) => {
 export const signup = async (request, response) => {
     try {
         const { email, password } = request.body;
-
+        console.log(email,password)
         if (!email || !password) {
             return response.status(400).send("Email and password are required.");
         }
