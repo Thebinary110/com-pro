@@ -15,6 +15,8 @@ const databaseName = process.env.DATABASE_NAME; // Database name
 // Construct the full MongoDB connection string
 const mongoURI = `${databaseURL}/${databaseName}`;
 
+console.log("MongoURI:",mongoURI);
+
 app.use(cors({
     origin: [process.env.ORIGIN],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
@@ -26,17 +28,12 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 
-const server = app.listen(port, () => {
+app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
 
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect(mongoURI)
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Failed to connect to MongoDB:', err));
 // Connect to the database
-mongoose.connect(mongoURI)
-    .then(() => console.log('Connected to the database'))
-    .catch(err => console.error('Failed to connect to the database', err));
+
